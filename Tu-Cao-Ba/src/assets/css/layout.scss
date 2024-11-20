@@ -1,0 +1,43 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body,
+html,
+#root {
+  height: 100%;
+}
+
+/* Box Style */
+.Layout-container {
+  padding: 20px 30px;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  // Page BOx
+  .Layout-box {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    // right
+    .Layout-Left {
+      height: 100%;
+      width: 300px;
+    }
+    // right
+    .Layout-right {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  // footer
+  .Layout-footer {
+    height: 50px;
+  }
+}
