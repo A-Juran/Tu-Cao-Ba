@@ -12,7 +12,7 @@ export default function Index() {
       {/* page Box */}
       <div className="Layout-box">
         {/* Sidebar */}
-        <div className="Layout-Left">
+        <div className="Layout-left">
           <Sidebar />
         </div>
         {/* Header|Container */}
