@@ -23,6 +23,13 @@
         <commons-lang3.version>3.17.0</commons-lang3.version>
         <knife4j.version>4.4.0</knife4j.version>
         <hutool.version>5.8.10</hutool.version>
+        <jwt.version>0.9.1</jwt.version>
+        <commons.io.version>2.13.0</commons.io.version>
+        <bitwalker.version>1.21</bitwalker.version>
+        <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+        <fastjson.version>2.0.43</fastjson.version>
+        <jaxb-api.version>2.3.1</jaxb-api.version>
+
     </properties>
 
     <!--依赖项-->
@@ -30,6 +37,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -61,7 +72,7 @@
         <!--shiro-->
         <dependency>
             <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
+            <artifactId>shiro-spring-boot-web-starter</artifactId>
             <version>${shiro.version}</version>
         </dependency>
         <!--mybatis-plus-->
@@ -94,6 +105,47 @@
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
         </dependency>
+        <!-- Token生成与解析-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jwt.version}</version>
+        </dependency>
+        <!-- io常用工具类 -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
+        <!-- 解析客户端操作系统、浏览器等 -->
+        <dependency>
+            <groupId>eu.bitwalker</groupId>
+            <artifactId>UserAgentUtils</artifactId>
+            <version>${bitwalker.version}</version>
+        </dependency>
+        <!--javax-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet-api.version}</version>
+        </dependency>
+        <!-- redis 缓存操作 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <!-- 阿里JSON解析器 -->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <!-- Jaxb -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxb-api.version}</version>
+        </dependency>
         <!--druid-->
         <!--<dependency>-->
         <!--    <groupId>com.alibaba</groupId>-->
@@ -113,6 +165,28 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+
+    <!--<repositories>-->
+    <!--    &lt;!&ndash;阿里云镜像仓库&ndash;&gt;-->
+    <!--    <repository>-->
+    <!--        <id>public</id>-->
+    <!--        <name>aliyun nexus</name>-->
+    <!--        <url>https://maven.aliyun.com/repository/public</url>-->
+    <!--        <releases>-->
+    <!--            <enabled>true</enabled>-->
+    <!--        </releases>-->
+    <!--    </repository>-->
+    <!--    &lt;!&ndash;oracle驱动没有发布到中央仓库，只能从此仓库下载&ndash;&gt;-->
+    <!--    <repository>-->
+    <!--        <id>jeecg</id>-->
+    <!--        <name>jeecg Repository</name>-->
+    <!--        <url>http://maven.jeewx.com/nexus/content/repositories/jeecg</url>-->
+    <!--        <snapshots>-->
+    <!--            <enabled>false</enabled>-->
+    <!--        </snapshots>-->
+    <!--    </repository>-->
+    <!--</repositories>-->
 
     <build>
         <plugins>

@@ -1,6 +1,7 @@
 package cn.envisions.tucaoba.controller;
 
 import cn.envisions.tucaoba.common.BaseController;
+import cn.envisions.tucaoba.common.constant.Constants;
 import cn.envisions.tucaoba.common.response.AjaxResult;
 import cn.envisions.tucaoba.entity.dto.LoginUserDTO;
 import cn.envisions.tucaoba.entity.dto.RegisterUserDTO;
@@ -31,9 +32,9 @@ public class LoginController extends BaseController {
     }
 
     @PostMapping("/login")
-    @Operation(summary = "注册")
+    @Operation(summary = "登录")
     public AjaxResult login(@RequestBody LoginUserDTO loginUserDTO) {
-        loginService.login(loginUserDTO);
-        return success("注册成功");
+        String token = loginService.login(loginUserDTO);
+        return success().put(Constants.TOKEN,token);
     }
 }

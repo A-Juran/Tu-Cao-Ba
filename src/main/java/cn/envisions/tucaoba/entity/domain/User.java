@@ -5,14 +5,15 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @TableName("`tc_users`")
-public class User {
+public class User implements Serializable {
 
     @TableId(type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     private String username;
 
