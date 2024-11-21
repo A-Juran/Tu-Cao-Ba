@@ -1,7 +1,20 @@
-#the server port.
+#envirment
 spring:
   profiles:
     active: dev
 
+#defalut context-path
+server:
+  servlet:
+    context-path: /tcb
 
+#knife4j
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    #operations-sorter: order
+  api-docs:
+    path: /v3/api-docs
+  default-flat-param-object: true
 

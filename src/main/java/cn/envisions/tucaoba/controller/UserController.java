@@ -1,9 +1,9 @@
 package cn.envisions.tucaoba.controller;
 
 import cn.envisions.tucaoba.common.BaseController;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController("user")
+@RequestMapping("user")
 public class UserController extends BaseController {
 
 }
