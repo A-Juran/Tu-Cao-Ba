@@ -3,7 +3,7 @@ package cn.envisions.tucaoba.utils.ip;
 import cn.envisions.tucaoba.utils.ServletUtils;
 import cn.envisions.tucaoba.utils.StringUtils;
 
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 

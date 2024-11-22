@@ -17,6 +17,8 @@ death:
 spring:
   profiles:
     active: dev
+  thymeleaf:
+    prefix: classpath:/templates/
   data:
     # redis 配置
     redis:
@@ -45,14 +47,24 @@ server:
     context-path: /tcb
 
 #knife4j
-springdoc:
-  swagger-ui:
-    path: /swagger-ui.html
-    tags-sorter: alpha
-    #operations-sorter: order
-  api-docs:
-    path: /v3/api-docs
-  default-flat-param-object: true
+knife4j:
+  enable: true
+  openapi:
+    title: 吐槽吧，接口文档
+    description: 在线即实聊天
+    email: 21171326@qq.com
+    concat: Iga
+    url: https://aalo.cn
+    version: v1.0.0
+    license: Apache 2.0
+    license-url: https://stackoverflow.com/
+    terms-of-service-url: https://stackoverflow.com/
+    group:
+      test1:
+        group-name: Iga
+        api-rule: package
+        api-rule-resources:
+          - cn.envisions.tucaoba.controller
 
 
 # token
@@ -66,9 +78,8 @@ token:
 
 
 #logger
+
+# 开启Shiro注解
 logging:
   level:
-    org:
-      apache:
-        shiro: DEBUG
-
+    org.springframework.web: DEBUG

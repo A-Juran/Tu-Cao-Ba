@@ -3,10 +3,11 @@ package cn.envisions.tucaoba.handler.exception;
 import cn.envisions.tucaoba.common.exception.ServiceException;
 import cn.envisions.tucaoba.common.response.AjaxResult;
 import cn.envisions.tucaoba.utils.StringUtils;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author JuRan

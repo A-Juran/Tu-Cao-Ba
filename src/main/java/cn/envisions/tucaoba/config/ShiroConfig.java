@@ -1,64 +1,59 @@
 package cn.envisions.tucaoba.config;
 
+import cn.envisions.tucaoba.config.relam.CustomCredentialsMatcher;
 import cn.envisions.tucaoba.config.relam.ShiroRealm;
-import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.Date;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
 public class ShiroConfig {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    @Bean
+    public DefaultWebSecurityManager getManager(@Qualifier("shiroRealm") ShiroRealm shiroRealm) {
+        DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
+        manager.setRealm(shiroRealm);
+        return manager;
+    }
 
-//    @Bean(name = "filterShiroFilterRegistrationBean")
-    @Bean(name = "filterShiroFilterRegistrationBean")
-    public ShiroFilterFactoryBean shirFilter(@Qualifier("securityManager") SecurityManager securityManager) {
-        logger.info("启动shiroFilter--时间是：{}", new Date());
-        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        shiroFilterFactoryBean.setSecurityManager(securityManager);
-        //shiro拦截器
-        Map<String, String> filterMap = new LinkedHashMap<>();
-        //放行
+    @Bean
+    public ShiroFilterFactoryBean factory(DefaultWebSecurityManager securityManager) {
+        ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
+        factoryBean.setSecurityManager(securityManager);
+        //自定义filter
+
+        Map<String, String> filterMap = new HashMap<>();
+        // 访问401和404页面不通过我们的Filter
         filterMap.put("/user/login", "anon");
-//        filterMap.put("/user/register", "anon");
-//        //配置需要认证权限的
+        filterMap.put("/user/register", "anon");
+        // swagger
+        filterMap.put("/doc.html", "anon");
+        filterMap.put("/swagger-resources", "anon");
+        filterMap.put("/v2/api-docs", "anon");
+        filterMap.put("/webjars/**", "anon");
+        filterMap.put("/401", "anon");
         filterMap.put("/**", "authc");
-        logger.info("授权信息：{}",filterMap);
-
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterMap);
-        return shiroFilterFactoryBean;
+        factoryBean.setFilterChainDefinitionMap(filterMap);
+        return factoryBean;
     }
 
-    //自定义身份认证Realm（包含用户名密码校验，权限校验等）
+    @Bean(name = "shiroRealm")
+    public ShiroRealm shiroRealm() {
+        ShiroRealm shiroRealm = new ShiroRealm();
+        shiroRealm.setCredentialsMatcher(new CustomCredentialsMatcher());
+        return shiroRealm;
+    }
+
     @Bean
-    public ShiroRealm myShiroRealm() {
-        return new ShiroRealm();
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        return new LifecycleBeanPostProcessor();
     }
 
-
-    @Bean(name = "securityManager")
-    public DefaultWebSecurityManager securityManager() {
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(myShiroRealm());
-        return securityManager;
-    }
-
-    //开启shiro aop注解支持，不开启的话权限验证就会失效
-    @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
-        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
-        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
-        return authorizationAttributeSourceAdvisor;
-    }
 
 }

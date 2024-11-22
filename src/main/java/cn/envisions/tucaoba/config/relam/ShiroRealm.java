@@ -10,13 +10,16 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author JuRan
  * @date 2024/11/21 11:44
  * @description: shiro认证、授权
  */
+@Service
 public class ShiroRealm extends AuthorizingRealm {
+
     @Autowired
     private IUserService userService;
 
@@ -36,6 +39,6 @@ public class ShiroRealm extends AuthorizingRealm {
         if (BeanUtil.isEmpty(user)) {
             throw new UserNotExistException("用户不存在");
         }
-        return new SimpleAuthenticationInfo(user, user, "");
+        return new SimpleAuthenticationInfo(user, user.getPassword(), "");
     }
 }

@@ -14,17 +14,17 @@
         <java.version>19</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>3.3.5</spring-boot.version>
-        <shiro.version>2.0.2</shiro.version>
+        <spring-boot.version>2.7.18</spring-boot.version>
+        <shiro.version>1.13.0</shiro.version>
         <mybatis-plus.version>3.5.9</mybatis-plus.version>
         <mysql-driver.version>8.0.33</mysql-driver.version>
-        <slf4j.version>2.0.16</slf4j.version>
+        <slf4j.version>1.7.36</slf4j.version>
         <druid.version>1.2.23</druid.version>
         <commons-lang3.version>3.17.0</commons-lang3.version>
-        <knife4j.version>4.4.0</knife4j.version>
-        <hutool.version>5.8.10</hutool.version>
+        <knife4j.version>4.0.0</knife4j.version>
+        <hutool.version>5.8.21</hutool.version>
         <jwt.version>0.9.1</jwt.version>
-        <commons.io.version>2.13.0</commons.io.version>
+        <commons.io.version>2.14.0</commons.io.version>
         <bitwalker.version>1.21</bitwalker.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <fastjson.version>2.0.43</fastjson.version>
@@ -56,7 +56,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>${spring-boot.version}</version>
             <scope>test</scope>
         </dependency>
         <!--WebSocket-->
@@ -72,13 +71,18 @@
         <!--shiro-->
         <dependency>
             <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring-boot-web-starter</artifactId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
             <version>${shiro.version}</version>
         </dependency>
         <!--mybatis-plus-->
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis-plus.version}</version>
         </dependency>
         <!--slf4j-->
@@ -96,7 +100,7 @@
         <!--knife4f-->
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
             <version>${knife4j.version}</version>
         </dependency>
         <!--hutool-->
@@ -133,6 +137,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+            <version>${spring-boot.version}</version>
         </dependency>
         <!-- 阿里JSON解析器 -->
         <dependency>
@@ -152,6 +157,10 @@
         <!--    <artifactId>druid</artifactId>-->
         <!--    <version>${druid.version}</version>-->
         <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
