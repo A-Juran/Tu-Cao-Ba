@@ -1,20 +1,22 @@
 package cn.envisions.tucaoba.service.impl;
 
 import cn.envisions.tucaoba.common.exception.user.RegisterFailedException;
+import cn.envisions.tucaoba.common.exception.user.UserNotExistException;
+import cn.envisions.tucaoba.entity.domain.LoginUser;
 import cn.envisions.tucaoba.entity.domain.User;
 import cn.envisions.tucaoba.entity.dto.LoginUserDTO;
 import cn.envisions.tucaoba.entity.dto.RegisterUserDTO;
+import cn.envisions.tucaoba.security.auth.ShiroJwtAuthenticationToken;
 import cn.envisions.tucaoba.security.service.TokenService;
 import cn.envisions.tucaoba.service.ILoginService;
 import cn.envisions.tucaoba.service.IUserService;
 import cn.envisions.tucaoba.utils.DateUtils;
+import cn.envisions.tucaoba.utils.SubjectSecurityUtils;
 import cn.envisions.tucaoba.utils.ip.IpUtils;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.crypto.digest.MD5;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -57,15 +59,24 @@ public class LoginServiceImpl implements ILoginService {
 
     @Override
     public String login(LoginUserDTO loginUserDTO) {
-        //获取当前用户
-        Subject subject = SecurityUtils.getSubject();
-        //封装用户的登录数据
-        UsernamePasswordToken token = new UsernamePasswordToken(loginUserDTO.getUsername(),
-                loginUserDTO.getPassword());
-        subject.login(token);
+        log.info(loginUserDTO.toString());
+        //check username and Password.
+        User user = getUserByUsername(loginUserDTO.getUsername());
+        if (ObjectUtil.isNull(user)) {
+            throw new UserNotExistException("用户名或密码错误");
+        }
+        SubjectSecurityUtils.checkUserPassword(loginUserDTO.getPassword(), user.getPassword());
+        //1.根据用户信息生成用户名和密码的token
+        String token = tokenService.createUserAndPasswordToken(user.getUsername());
+        SecurityUtils.getSubject().login(new ShiroJwtAuthenticationToken(token));
+        //获取认证登录主体
+        return tokenService.createToken(createLoginUser(token, user));
+    }
 
-        //tokenService.createToken(loginUser)
-        return subject.getPrincipal().toString();
+
+    public LoginUser createLoginUser(String token, User user) {
+        recordLoginInfo(user.getId());
+        return new LoginUser(user.getId(), user, null, token);
     }
 
     /**
@@ -73,19 +84,18 @@ public class LoginServiceImpl implements ILoginService {
      *
      * @param userId 用户ID
      */
-    public void recordLoginInfo(Long userId)
-    {
+    public void recordLoginInfo(Long userId) {
         User sysUser = new User();
         sysUser.setLoginIp(IpUtils.getIpAddr());
         sysUser.setLastLoginAt(DateUtils.getNowDate());
-        LambdaQueryWrapper<User> eq = new LambdaQueryWrapper<User>().eq(User::getId,userId);
-        userService.update(sysUser,eq);
+        LambdaQueryWrapper<User> eq = new LambdaQueryWrapper<User>().eq(User::getId, userId);
+        userService.update(sysUser, eq);
     }
 
     /**
      * 检查用户名是否存在
      *
-     * @param username
+     * @param username 用户名
      */
     private User getUserByUsername(String username) {
         LambdaQueryWrapper<User> userLambdaQueryWrapper = new LambdaQueryWrapper<>();

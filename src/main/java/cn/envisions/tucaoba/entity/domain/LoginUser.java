@@ -8,7 +8,7 @@ import java.util.Set;
 
 /**
  * 登录用户身份权限
- * 
+ *
  * @author death
  */
 @Data
@@ -22,6 +22,11 @@ public class LoginUser implements Serializable {
     private Long userId;
 
     /**
+     * 用户密码
+     */
+    private String password;
+
+    /**
      * 部门ID
      */
     private Long deptId;
@@ -31,6 +36,11 @@ public class LoginUser implements Serializable {
      */
     @Getter
     private String token;
+
+    /**
+     * 用户UserAndPasswordToken
+     */
+    private String userAndPasswordToken;
 
     /**
      * 登录时间
@@ -72,13 +82,14 @@ public class LoginUser implements Serializable {
      */
     private User user;
 
-    public LoginUser()
-    {
+    public LoginUser() {
     }
 
-    public LoginUser(Long userId, User user, Set<String> permissions)
-    {
+    public LoginUser(Long userId, User user, Set<String> permissions, String userAndPasswordToken) {
         this.userId = userId;
+        this.password = user.getPassword();
+        this.userAndPasswordToken = userAndPasswordToken;
+        this.loginTime = user.getLastLoginAt().getTime();
         this.user = user;
         this.permissions = permissions;
     }

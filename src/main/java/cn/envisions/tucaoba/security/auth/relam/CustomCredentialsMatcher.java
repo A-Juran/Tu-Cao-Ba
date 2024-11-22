@@ -1,6 +1,5 @@
-package cn.envisions.tucaoba.config.relam;
+package cn.envisions.tucaoba.security.auth.relam;
 
-import cn.envisions.tucaoba.entity.domain.User;
 import cn.hutool.crypto.digest.MD5;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -12,13 +11,13 @@ public class CustomCredentialsMatcher implements CredentialsMatcher {
     public boolean doCredentialsMatch(AuthenticationToken authenticationToken,
                                       AuthenticationInfo authenticationInfo) {
 
-        String inputPassword = new String((char[]) authenticationToken.getCredentials());
+        String inputToken = (String) authenticationToken.getCredentials();
 
-        User storedPassword = (User)authenticationInfo.getCredentials();
+        String token = (String) authenticationInfo.getCredentials();
 
-        String hashedInputPassword = hashPassword(inputPassword);
+        //String hashedInputPassword = hashPassword(inputPassword);
 
-        return hashedInputPassword.equalsIgnoreCase(storedPassword.getPassword());
+        return token.equalsIgnoreCase(inputToken);
     }
     //进行加密比较
     private String hashPassword(String password) {

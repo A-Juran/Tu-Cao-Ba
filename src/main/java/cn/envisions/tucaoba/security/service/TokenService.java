@@ -72,8 +72,7 @@ public class TokenService
                 // 解析对应的权限以及用户信息
                 String uuid = (String) claims.get(Constants.LOGIN_USER_KEY);
                 String userKey = getTokenKey(uuid);
-                LoginUser user = redisCache.getCacheObject(userKey);
-                return user;
+                return redisCache.getCacheObject(userKey);
             }
             catch (Exception e)
             {
@@ -127,8 +126,7 @@ public class TokenService
     /**
      * 验证令牌有效期，相差不足20分钟，自动刷新缓存
      * 
-     * @param token 令牌
-     * @return 令牌
+     * @param loginUser 登录用户
      */
     public void verifyToken(LoginUser loginUser)
     {
@@ -189,7 +187,7 @@ public class TokenService
      * @param token 令牌
      * @return 数据声明
      */
-    private Claims parseToken(String token)
+    public Claims parseToken(String token)
     {
         return Jwts.parser()
                 .setSigningKey(secret)
@@ -212,7 +210,6 @@ public class TokenService
     /**
      * 获取请求token
      *
-     * @param request
      * @return token
      */
     private String getToken(HttpServletRequest request)
@@ -228,5 +225,16 @@ public class TokenService
     private String getTokenKey(String uuid)
     {
         return CacheConstants.LOGIN_TOKEN_KEY + uuid;
+    }
+
+    /**
+     * 根据用户名和密码构建Token，用户Shiro认证
+     * @param username  用户名
+     * @return token
+     */
+    public String createUserAndPasswordToken(String username) {
+        HashMap<String, Object> userAndPasswordMap = new HashMap<>();
+        userAndPasswordMap.put(Constants.SHIRO_AUTH_JWT_USERNAME,username);
+        return createToken(userAndPasswordMap);
     }
 }

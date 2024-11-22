@@ -170,4 +170,10 @@ public class Constants
      */
     public static final String[] JOB_ERROR_STR = { "java.net.URL", "javax.naming.InitialContext", "org.yaml.snakeyaml",
             "org.springframework", "org.apache", "com.death.common.utils.file", "com.death.framework.config", "com.death.project.tool" };
+
+    /**
+     * shiro 无状态认证，通过(username,password生成token)。
+     */
+    public static final String SHIRO_AUTH_JWT_USERNAME = "username";
+    public static final String SHIRO_AUTH_JWT_PASSWORD = "password";
 }
