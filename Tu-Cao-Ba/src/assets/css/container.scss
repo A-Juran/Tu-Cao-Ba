@@ -1,7 +1,37 @@
 .container {
-    flex: 1;
-    background-image: url("/src/assets/image/bk/bk2.jpeg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    border-radius: 0px 0px 10px 0px;
+  flex: 1;
+  background-image: url("/src/assets/image/bk/bk2.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 0px 0px 10px 0px;
+  padding: 20px 30px;
+}
+
+.chat-box {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+}
+
+.send-msg {
+  height: 50px;
+  width: 100%;
+  padding: 0 80px;
+  box-sizing: border-box;
+}
+
+.send-msg-box {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
 }
