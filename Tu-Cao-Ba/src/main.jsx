@@ -1,9 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './layout/Index'
+import * as React from "react";
+import { createRoot } from "react-dom/client";
+import App from "./layout/Index";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+import "./assets/css/main.css";
+
+import { NextUIProvider } from "@nextui-org/react";
+
+createRoot(document.getElementById("root")).render(
+  <NextUIProvider>
     <App />
-  </StrictMode>,
-)
+  </NextUIProvider>
+);

@@ -7,6 +7,8 @@ import Container from "../view/Container";
 import Footer from "../view/Footer";
 
 export default function Index() {
+  const footerIf = false;
+
   return (
     <div className="Layout-container">
       {/* page Box */}
@@ -22,7 +24,10 @@ export default function Index() {
         </div>
       </div>
       {/* Footer */}
-      <div className="Layout-footer">
+      <div
+        className="Layout-footer"
+        style={{ display: footerIf ? "block" : "none" }}
+      >
         <Footer />
       </div>
     </div>

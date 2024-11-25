@@ -1,0 +1,10 @@
+@import './container.scss';
+@import './layout.scss';
+@import './header.scss';
+@import './footer.scss';
+@import './sidebar.scss';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
