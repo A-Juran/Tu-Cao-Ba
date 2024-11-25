@@ -2,6 +2,7 @@ package cn.envisions.tucaoba.controller;
 
 import cn.envisions.tucaoba.common.BaseController;
 import cn.envisions.tucaoba.common.response.AjaxResult;
+import cn.envisions.tucaoba.entity.vo.UserInfoVO;
 import cn.envisions.tucaoba.service.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,7 +22,8 @@ public class UserController extends BaseController {
     @GetMapping("getInfo")
     @ApiOperation(value = "获取用户信息")
     public AjaxResult getUserInfo(){
-
-        return success();
+        UserInfoVO loginUserInfo = this.userService.getLoginUserInfo(1000L);
+        return success(loginUserInfo);
     }
+    
 }

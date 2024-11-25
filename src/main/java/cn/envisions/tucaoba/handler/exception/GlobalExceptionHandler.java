@@ -32,4 +32,15 @@ public class GlobalExceptionHandler {
         return AjaxResult.error(e.getMessage());
     }
 
+    /**
+     * 系统异常
+     */
+    @ExceptionHandler(Exception.class)
+    public AjaxResult handleException(Exception e, HttpServletRequest request)
+    {
+        String requestURI = request.getRequestURI();
+        log.error("请求地址'{}',发生系统异常.", requestURI, e);
+        return AjaxResult.error(e.getMessage());
+    }
+
 }

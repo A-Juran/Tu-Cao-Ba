@@ -10,26 +10,17 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-@TableName("`tc_users`")
-public class User extends BaseEntity implements Serializable{
+@TableName("`tc_chat_room`")
+public class ChatRoom  extends BaseEntity implements Serializable {
 
     @TableId(type = IdType.AUTO)
     private Long id;
 
-    private String username;
+    private String uniqueId;
 
-    private String password;
+    private String name;
 
-    private String nickName;
+    private String avatar;
 
-    private String sex;
-
-    private String avatarUrl;
-
-    private String status;
-
-    private Date lastLoginAt;
-
-    private String loginIp;
-
+    private String description;
 }
