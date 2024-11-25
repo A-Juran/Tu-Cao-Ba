@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 /**
- * @author: lhy
  * jwt过滤器，作为shiro的过滤器，对请求进行拦截并处理
  * 跨域配置不在这里配了，我在另外的配置类进行配置了，这里把重心放在验证上
  */
@@ -32,7 +31,7 @@ import java.nio.charset.StandardCharsets;
 public class JwtFilter extends BasicHttpAuthenticationFilter {
 
     @Autowired
-    TokenService tokenService;
+    private TokenService tokenService;
 
     /**
      * 进行token的验证
@@ -40,9 +39,8 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
     @Override
     protected boolean executeLogin(ServletRequest request, ServletResponse response) throws Exception {
         LoginUser loginUser = getLoginUser((HttpServletRequest) request);
-        log.info("执行登录:{},{}",StringUtils.isNull(loginUser),"执行login");
+        log.info("执行登录:{},{}", StringUtils.isNull(loginUser), "执行login");
         if (StringUtils.isNull(loginUser)) {
-            out((HttpServletResponse) response);
             return false;
         }
         //token存在，进行验证
@@ -51,6 +49,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
             SecurityUtils.getSubject().login(jwtToken);  //通过subject，提交给myRealm进行登录验证
             return true;
         } catch (Exception e) {
+            out((HttpServletResponse) response);
             return false;
         }
     }
@@ -80,6 +79,12 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
      */
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
+        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        String path = httpServletRequest.getRequestURI();
+        // 如果是允许匿名访问的路径，直接返回true
+        if (mappedValue != null && mappedValue.toString().contains("anon")) {
+            return true;
+        }
         try {
             return executeLogin(request, response);
         } catch (Exception e) {

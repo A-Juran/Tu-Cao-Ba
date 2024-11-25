@@ -4,13 +4,16 @@ import cn.envisions.tucaoba.security.auth.relam.CustomCredentialsMatcher;
 import cn.envisions.tucaoba.security.auth.relam.ShiroRealm;
 import cn.envisions.tucaoba.security.filter.JwtAuthenticationTokenFilter;
 import cn.envisions.tucaoba.security.filter.JwtFilter;
+import cn.envisions.tucaoba.security.service.TokenService;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,8 +21,11 @@ import javax.servlet.Filter;
 import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
+//@Configuration
 public class ShiroConfig {
+
+    @Autowired
+    TokenService tokenService;
 
     @Bean
     public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("shiroRealm") ShiroRealm shiroRealm) {
@@ -36,13 +42,13 @@ public class ShiroConfig {
     }
 
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager) {
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager,JwtFilter jwtFilter) {
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
         factoryBean.setSecurityManager(securityManager);
 
         //拦截器filter
         HashMap<String, Filter> requestFilterMap = new HashMap<>();
-        requestFilterMap.put("jwt", getJwtFilter());
+        requestFilterMap.put("jwt", jwtFilter);
         factoryBean.setFilters(requestFilterMap);
 
         //自定义过滤器
@@ -51,7 +57,6 @@ public class ShiroConfig {
         // 访问401和404页面不通过我们的Filter
         filterMap.put("/user/login", "anon");
         filterMap.put("/user/register", "anon");
-        // swagger
         filterMap.put("/doc.html", "anon");
         filterMap.put("/swagger-resources", "anon");
         filterMap.put("/v2/api-docs", "anon");
@@ -69,6 +74,14 @@ public class ShiroConfig {
         return shiroRealm;
     }
 
+
+    @Bean
+    public FilterRegistrationBean<Filter> registration(JwtFilter jwtFilter) {
+        FilterRegistrationBean<Filter> registration = new FilterRegistrationBean<>(jwtFilter);
+        registration.setEnabled(false);
+        return registration;
+    }
+
     @Bean
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
@@ -78,11 +91,7 @@ public class ShiroConfig {
 //    public JwtAuthenticationTokenFilter getJwtAuthenticationTokenFilter(){
 //        return new JwtAuthenticationTokenFilter();
 //    }
-
-    @Bean
-    public JwtFilter getJwtFilter(){
-        return new JwtFilter();
-    }
+//
 
     /**
      * 开启对 Shiro 注解的支持
