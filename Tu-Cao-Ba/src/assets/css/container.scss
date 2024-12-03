@@ -1,37 +1,158 @@
-.container {
-  flex: 1;
+.container-box {
+  width: 100% !important;
   background-image: url("/src/assets/image/bk/bk2.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
-  border-radius: 0px 0px 10px 0px;
-  padding: 20px 30px;
 }
 
-.chat-box {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+// 移动端优先原则
+@media screen and (max-width: 768px) {
+  .container-box {
+    border-radius: 0px 0px 0px 0px;
+    padding: 0px 20px 5px 20px;
+  }
+
+  .chat-box {
+    height: 100%;
+    width: 100%;
+  }
+
+  .content {
+    width: 100%;
+    flex: auto;
+    height: 0;
+    overflow: hidden;
+
+    //聊天内容
+    .chat-list {
+      width: 101%;
+      height: 100%;
+      overflow-y: scroll;
+
+      .chat-item {
+        width: 100%;
+        padding: 2px 4px;
+
+        .chat-item-is-mine,
+        .chat-item-not-mine {
+          max-width: 90%;
+          border-radius: 8px;
+          padding: 5px 8px;
+          box-sizing: border-box;
+
+          .chat-content {
+            font-size: 1rem;
+          }
+          .chat-tips {
+            display: flex;
+            align-items: center;
+
+            .chat-time {
+              margin-right: 5px;
+              font-size: 0.8rem;
+            }
+          }
+        }
+
+        .chat-item-not-mine {
+          background-color: #fff;
+          .chat-tips {
+            justify-content: end;
+
+            .chat-time {
+              color: #000;
+            }
+          }
+        }
+
+        .chat-item-is-mine {
+          background-color: #78e378;
+
+          .chat-tips {
+            justify-content: end;
+
+            .chat-time {
+              color: #fff;
+            }
+          }
+        }
+      }
+
+      .chat-item{
+        margin-bottom: 8px;
+      }
+
+      .chat-item:first-child{
+        margin-top: 5px;
+      }
+
+      .chat-list-position-left {
+        display: flex;
+      }
+
+      .chat-list-position-right {
+        display: flex;
+        justify-content: end;
+      }
+    }
+  }
+
+  .send-msg {
+    height: 50px;
+    width: 100%;
+    padding: 0 0px;
+    box-sizing: border-box;
+  }
+
+  .send-msg-box {
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+  }
 }
 
-.content {
-  flex: 1;
-  width: 100%;
-}
+@media screen and (min-width: 1200px) {
+  .container-box {
+    width: 100% !important;
+    flex: 1;
+    background-image: url("/src/assets/image/bk/bk2.jpeg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 0px 0px 10px 0px;
+    padding: 20px 30px;
+  }
 
-.send-msg {
-  height: 50px;
-  width: 100%;
-  padding: 0 80px;
-  box-sizing: border-box;
-}
+  .chat-box {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 
-.send-msg-box {
-  height: 100%;
-  width: 100%;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
+  .content {
+    flex: 1;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .send-msg {
+    height: 50px;
+    width: 100%;
+    padding: 0 80px;
+    box-sizing: border-box;
+  }
+
+  .send-msg-box {
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+  }
 }

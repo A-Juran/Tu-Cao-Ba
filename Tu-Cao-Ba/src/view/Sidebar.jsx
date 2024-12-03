@@ -3,7 +3,7 @@ import { Input } from "@nextui-org/input";
 import { MailIcon, Menu } from "../assets/icons/icons";
 import { Button } from "@nextui-org/react";
 
-export default function Sidebar() {
+export default function Sidebar() { 
   return (
     <>
       <div className="sidebar">
@@ -18,7 +18,7 @@ export default function Sidebar() {
           <div className="search-input">
             <Input
               type="email"
-              placeholder="Search Chat"
+              placeholder="搜索聊天"
               labelPlacement="outside"
               endContent={
                 <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
