@@ -1,4 +1,8 @@
 .container-box {
+  flex: 1;
+  height: 0;
+  display: flex;
+  flex-direction: column;
   width: 100% !important;
   background-image: url("/src/assets/image/bk/bk2.jpeg");
   background-size: cover;
@@ -9,29 +13,36 @@
 @media screen and (max-width: 768px) {
   .container-box {
     border-radius: 0px 0px 0px 0px;
-    padding: 0px 20px 5px 20px;
   }
 
   .chat-box {
-    height: 100%;
+    flex: 1;
+    height: 0;
+    display: flex;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     width: 100%;
   }
 
   .content {
     width: 100%;
-    flex: auto;
+    flex: 1;
     height: 0;
-    overflow: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
     //聊天内容
     .chat-list {
-      width: 101%;
-      height: 100%;
+      width: 100%;
+      box-sizing: border-box;
       overflow-y: scroll;
+      overflow-x: hidden;
+      
 
       .chat-item {
         width: 100%;
-        padding: 2px 4px;
+        box-sizing: border-box;
 
         .chat-item-is-mine,
         .chat-item-not-mine {
@@ -42,6 +53,9 @@
 
           .chat-content {
             font-size: 1rem;
+            font-family: "Roboto", sans-serif;
+            font-weight: 450;
+            font-style: normal;
           }
           .chat-tips {
             display: flex;
@@ -50,6 +64,8 @@
             .chat-time {
               margin-right: 5px;
               font-size: 0.8rem;
+              font-family: "Roboto", sans-serif;
+              font-weight: 450;
             }
           }
         }
@@ -78,11 +94,131 @@
         }
       }
 
-      .chat-item{
+      .chat-item {
         margin-bottom: 8px;
       }
 
-      .chat-item:first-child{
+      .chat-item:first-child {
+        margin-top: 5px;
+      }
+
+      .chat-list-position-left {
+        display: flex;
+      }
+
+      .chat-list-position-right {
+        display: flex;
+        justify-content: end;
+      }
+    }
+  }
+
+  .send-msg {
+    height: 50px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .send-msg-box {
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .container-box {
+    border-radius: 0px 0px 0px 0px;
+  }
+
+  .chat-box {
+    flex: 1;
+    height: 0;
+    display: flex;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .content {
+    width: 103%;
+    box-sizing: border-box;
+    flex: 1;
+    height: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    //聊天内容
+    .chat-list {
+      width: 101%;
+      padding: 0 8px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+
+      .chat-item {
+        width: 100%;
+        padding: 2px 4px;
+
+        .chat-item-is-mine,
+        .chat-item-not-mine {
+          max-width: 90%;
+          border-radius: 8px;
+          padding: 5px 8px;
+          box-sizing: border-box;
+
+          .chat-content {
+            font-size: 1rem;
+            font-family: "Roboto", sans-serif;
+            font-weight: 450;
+            font-style: normal;
+          }
+          .chat-tips {
+            display: flex;
+            align-items: center;
+
+            .chat-time {
+              margin-right: 5px;
+              font-size: 0.8rem;
+              font-family: "Roboto", sans-serif;
+              font-weight: 450;
+            }
+          }
+        }
+
+        .chat-item-not-mine {
+          background-color: #fff;
+          .chat-tips {
+            justify-content: end;
+
+            .chat-time {
+              color: #000;
+            }
+          }
+        }
+
+        .chat-item-is-mine {
+          background-color: #78e378;
+
+          .chat-tips {
+            justify-content: end;
+
+            .chat-time {
+              color: #fff;
+            }
+          }
+        }
+      }
+
+      .chat-item {
+        margin-bottom: 8px;
+      }
+
+      .chat-item:first-child {
         margin-top: 5px;
       }
 
@@ -115,34 +251,115 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1024px) {
   .container-box {
-    width: 100% !important;
-    flex: 1;
-    background-image: url("/src/assets/image/bk/bk2.jpeg");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    height: 0;
     border-radius: 0px 0px 10px 0px;
-    padding: 20px 30px;
+    padding: 0px 20px 5px 20px;
+    box-sizing: border-box;
   }
 
   .chat-box {
-    height: 100%;
-    width: 100%;
+    flex: 1;
     display: flex;
+    overflow: hidden;
     flex-direction: column;
+    width: 100%;
+    height: 0;
+    padding: 0px 0px 10px 0px;
   }
 
   .content {
-    flex: 1;
-    width: 100%;
-    overflow: hidden;
+    width: 102%;
+    box-sizing: border-box;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    //聊天内容
+    .chat-list {
+      width: 101%;
+      padding: 0 20px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+
+      .chat-item {
+        width: 100%;
+        padding: 2px 4px;
+
+        .chat-item-is-mine,
+        .chat-item-not-mine {
+          max-width: 90%;
+          border-radius: 8px;
+          padding: 5px 8px;
+          box-sizing: border-box;
+
+          .chat-content {
+            font-size: 1rem;
+            font-family: "Roboto", sans-serif;
+            font-weight: 450;
+            font-style: normal;
+          }
+          .chat-tips {
+            display: flex;
+            align-items: center;
+
+            .chat-time {
+              margin-right: 5px;
+              font-size: 0.8rem;
+              font-family: "Roboto", sans-serif;
+              font-weight: 450;
+            }
+          }
+        }
+
+        .chat-item-not-mine {
+          background-color: #fff;
+          .chat-tips {
+            justify-content: end;
+
+            .chat-time {
+              color: #000;
+            }
+          }
+        }
+
+        .chat-item-is-mine {
+          background-color: #78e378;
+
+          .chat-tips {
+            justify-content: end;
+
+            .chat-time {
+              color: #fff;
+            }
+          }
+        }
+      }
+
+      .chat-item {
+        margin-bottom: 8px;
+      }
+
+      .chat-item:first-child {
+        margin-top: 5px;
+      }
+
+      .chat-list-position-left {
+        display: flex;
+      }
+
+      .chat-list-position-right {
+        display: flex;
+        justify-content: end;
+      }
+    }
   }
 
   .send-msg {
     height: 50px;
     width: 100%;
-    padding: 0 80px;
+    padding: 0 100px;
     box-sizing: border-box;
   }
 

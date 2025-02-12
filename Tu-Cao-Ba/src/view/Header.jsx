@@ -20,7 +20,7 @@ export default function Header() {
             variant="faded"
             color="success"
           >
-            Ok
+            success
           </Chip>
         </div>
       </div>

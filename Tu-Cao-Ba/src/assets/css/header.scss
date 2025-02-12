@@ -6,17 +6,39 @@
 
 @media screen and (max-width: 768px) {
   .header {
-    padding: 0 20px;
     width: 100%;
-    border-radius: 0px 0 0px 0px;
+    border-radius: 0px 0px 0px 0px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-family: "Roboto", sans-serif;
+    font-weight: 450;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .header {
+    padding: 0 20px;
+    width: 100%;
+    border-radius: 0px 0px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Roboto", sans-serif;
+    font-weight: 450;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .header {
+    padding: 0 20px;
+    width: 100%;
     border-radius: 0px 10px 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Roboto", sans-serif;
+    font-weight: 450;
   }
 }
