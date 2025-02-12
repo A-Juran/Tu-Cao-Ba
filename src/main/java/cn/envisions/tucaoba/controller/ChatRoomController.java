@@ -25,11 +25,6 @@ public class ChatRoomController extends BaseController {
     @Autowired
     private IChatRoomService iChatRoomService;
 
-    /**
-     * 创建聊天室
-     *
-     * @return 成功信息
-     */
     @PostMapping("create")
     @ApiOperation(value = "创建聊天室")
     public AjaxResult crateChatRoom(@RequestBody ChatRoomDTO chatRoomDTO) {
@@ -39,11 +34,7 @@ public class ChatRoomController extends BaseController {
         return error("创建失败");
     }
 
-    /**
-     * 获取聊天室列表
-     *
-     * @return 返回聊天室列表
-     */
+
     @GetMapping("list")
     @ApiOperation(value = "获取聊天室列表")
     public AjaxResult getChatList() {
