@@ -1,72 +1,25 @@
 package cn.envisions.tucaoba.common.websocket.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
 /**
  *
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Message {
-  private String from;
-  private String to;
-  private String content;
-  private Date createTime;
-  private String fromNickname;
-  private String fromUserProfile;
-  private Integer messageTypeId;
 
-  public String getFrom() {
-    return from;
-  }
+    private String type;
 
-  public void setFrom(String from) {
-    this.from = from;
-  }
+    private Long id;
 
-  public String getTo() {
-    return to;
-  }
+    private String content;
 
-  public void setTo(String to) {
-    this.to = to;
-  }
+    private Date createTime;
 
-  public String getContent() {
-    return content;
-  }
-
-  public void setContent(String content) {
-    this.content = content;
-  }
-
-  public Date getCreateTime() {
-    return createTime;
-  }
-
-  public void setCreateTime(Date createTime) {
-    this.createTime = createTime;
-  }
-
-  public String getFromNickname() {
-    return fromNickname;
-  }
-
-  public void setFromNickname(String fromNickname) {
-    this.fromNickname = fromNickname;
-  }
-
-  public String getFromUserProfile() {
-    return fromUserProfile;
-  }
-
-  public void setFromUserProfile(String fromUserProfile) {
-    this.fromUserProfile = fromUserProfile;
-  }
-
-  public Integer getMessageTypeId() {
-    return messageTypeId;
-  }
-
-  public void setMessageTypeId(Integer messageTypeId) {
-    this.messageTypeId = messageTypeId;
-  }
 }

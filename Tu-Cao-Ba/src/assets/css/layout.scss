@@ -115,13 +115,14 @@ html,
       // right
       .Layout-Left {
         height: 100%;
-        width: 300px;
+        width: 100%;
       }
 
       // right
       .Layout-right {
         height: 100%;
         display: flex;
+        flex: 1;
         flex-direction: column;
       }
     }

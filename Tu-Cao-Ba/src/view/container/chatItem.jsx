@@ -2,116 +2,18 @@ import { SuccessIcon, Menu } from "../../assets/icons/icons";
 
 // 聊天记录
 
-export default function ChatList() {
+export default function ChatList(props) {
+  const chatList = props.chatList;
+
   return (
     <div className="chat-list">
-      <ChatItem />
+      <ChatItem list={chatList} />
     </div>
   );
 }
 
-function ChatItem() {
-  const chatList = [
-    {
-      id: 1,
-      isMine: false,
-      content: "i don't remember anything",
-      sendTime: "18:12",
-      sendStauts: true,
-    },
-    {
-      id: 2,
-      isMine: true,
-      content:
-        " OMG © do you remember what you did last nightat the work night out?",
-      sendTime: "18:12",
-      sendStauts: true,
-    },
-    {
-      id: 3,
-      isMine: false,
-      content: "i don't remember anything",
-      sendTime: "18:12",
-      sendStauts: true,
-    },
-    {
-      id: 4,
-
-      isMine: true,
-      content:
-        " OMG © do you remember what you did last nightat the work night out?",
-      sendTime: "18:12",
-      sendStauts: true,
-    },
-    {
-      id: 5,
-
-      isMine: false,
-      content: "i don't remember anything",
-      sendTime: "18:12",
-      sendStauts: true,
-    },
-    {
-      id: 6,
-
-      isMine: true,
-      content:
-        " OMG © do you remember what you did last nightat the work night out?",
-      sendTime: "18:12",
-      sendStauts: true,
-    },
-    {
-      id: 7,
-
-      isMine: false,
-      content: "i don't remember anything",
-      sendTime: "18:12",
-      sendStauts: true,
-    },
-    {
-      id: 8,
-
-      isMine: true,
-      content:
-        " OMG © do you remember what you did last nightat the work night out?",
-      sendTime: "18:12",
-      sendStauts: true,
-    },
-    {
-      id: 9,
-
-      isMine: false,
-      content: "i don't remember anything",
-      sendTime: "18:12",
-      sendStauts: true,
-    },
-    {
-      id: 10,
-      isMine: true,
-      content:
-        " OMG © do you remember what you did last nightat the work night out?",
-      sendTime: "18:12",
-      sendStauts: true,
-    },
-    {
-      id: 11,
-      isMine: false,
-      content: "i don't remember anything",
-      sendTime: "18:12",
-      sendStauts: true,
-    },
-    {
-      id: 12,
-      isMine: true,
-      content:
-        " 哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈?",
-      sendTime: "18:12",
-      sendStauts: true,
-    },
-  ];
-
-  
-  const items = chatList.map((item) => (
+function ChatItem({ list }) {
+  const items = list.map((item) => (
     <div
       className={
         item.isMine
@@ -133,8 +35,6 @@ function ChatItem() {
       </div>
     </div>
   ));
-
-  console.log(items);
 
   return items;
 }

@@ -5,10 +5,13 @@ import Sidebar from "../view/Sidebar";
 import Header from "../view/Header";
 import Container from "../view/Container";
 import Footer from "../view/Footer";
+import { io } from "socket.io-client";
+
 
 export default function Index() {
-  const footerIf = false;
 
+  const footerIf = false;
+  
   return (
     <div className="Layout-container">
       {/* page Box */}

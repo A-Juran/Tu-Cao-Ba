@@ -2,30 +2,26 @@ package cn.envisions.tucaoba.common.websocket.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.io.Serializable;
+import java.util.Date;
 
-@Setter
-@Getter
-@ToString
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class MessageTemplate implements Serializable {
 
-  private String type;
+  @JsonSerialize(using = ToStringSerializer.class)
+  private String fromUserName;
 
   @JsonSerialize(using = ToStringSerializer.class)
-  private Long messageId;
+  private String msgType;
 
+  @JsonSerialize(using = ToStringSerializer.class)
   private String content;
 
   @JsonSerialize(using = ToStringSerializer.class)
-  private Long userId;
-
-  @JsonSerialize(using = ToStringSerializer.class)
-  private Long fromUserId;
-
-  @JsonSerialize(using = ToStringSerializer.class)
-  private Long toUserId;
+  private String createTime;
 }

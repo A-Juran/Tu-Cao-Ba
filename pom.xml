@@ -29,7 +29,7 @@
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <fastjson.version>2.0.43</fastjson.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
-        <netty.socket.version>2.0.1</netty.socket.version>
+        <netty-socketio.version>2.0.9</netty-socketio.version>
 
     </properties>
 
@@ -63,13 +63,13 @@
         <dependency>
             <groupId>com.corundumstudio.socketio</groupId>
             <artifactId>netty-socketio</artifactId>
-            <version>${netty.socket.version}</version>
+            <version>${netty-socketio.version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-handler</artifactId>
-            <version>4.1.69.Final</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>io.netty</groupId>-->
+        <!--    <artifactId>netty-handler</artifactId>-->
+        <!--    <version>4.1.69.Final</version>-->
+        <!--</dependency>-->
         <!--JackJson-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

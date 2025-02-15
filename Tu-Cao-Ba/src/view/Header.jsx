@@ -12,7 +12,7 @@ export default function Header() {
           <OnloineUser />
         </div>
         {/* 聊天室|用户名 */}
-        <div className="title">JR'Bike</div>
+        <div className="title">Tu-Cao-Ba</div>
         {/* 在线状态 */}
         <div className="online-status">
           <Chip

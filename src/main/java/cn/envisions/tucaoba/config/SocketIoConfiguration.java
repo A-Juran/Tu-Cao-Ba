@@ -1,5 +1,6 @@
 package cn.envisions.tucaoba.config;
 
+import com.corundumstudio.socketio.SocketConfig;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.annotation.SpringAnnotationScanner;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,11 +24,18 @@ public class SocketIoConfiguration {
 
     @Bean
     public SocketIOServer socketIOServer(){
-        com.corundumstudio.socketio.Configuration configuration = new com.corundumstudio.socketio.Configuration();
-        configuration.setHostname(host);
-        configuration.setPort(port);
-        configuration.setOrigin("*");
+        SocketConfig socketConfig = new SocketConfig();
+        socketConfig.setReuseAddress(true);
 
+        com.corundumstudio.socketio.Configuration configuration =
+                new com.corundumstudio.socketio.Configuration();
+        configuration.setSocketConfig(socketConfig);
+        configuration.setPort(port);
+        configuration.setWorkerThreads(100);
+        configuration.setAllowCustomRequests(true);
+        configuration.setOrigin("*");
+        configuration.setPingInterval(60000);
+        configuration.setPingTimeout(60000);
         return new SocketIOServer(configuration);
     }
 

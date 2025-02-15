@@ -2,6 +2,7 @@ import "../assets/css/sidebar.scss";
 import { Input } from "@nextui-org/input";
 import { MailIcon, Menu } from "../assets/icons/icons";
 import { Button } from "@nextui-org/react";
+import ChatGroupList from './sidebar/component/chatGroupList'
 
 export default function Sidebar() { 
   return (
@@ -25,6 +26,9 @@ export default function Sidebar() {
               }
             />
           </div>
+        </div>
+        <div className="chat-group-box">
+          <ChatGroupList/>
         </div>
       </div>
     </>

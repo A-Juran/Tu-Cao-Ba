@@ -84,5 +84,37 @@
         justify-content: center;
       }
     }
+
+    .chat-group-box {
+      width: 100%;
+      padding: 10px 0px;
+      display: flex;
+
+      .avatar {
+        margin-right: 10px;
+      }
+
+      .chat-group-item {
+        width: 100%;
+        padding: 10px 5px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        display: flex;
+
+        .group-detail {
+          .group-name {
+            font-weight: bold;
+          }
+          .group-msg {
+            color: #adabab;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+     .group-active{
+        background-color: #decdcd;
+      }
   }
 }
